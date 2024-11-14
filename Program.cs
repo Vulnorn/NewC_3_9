@@ -9,7 +9,6 @@ namespace NewC_3_9
         {
             char openingBracket = '(';
             char closingBracket = ')';
-
             int correctExpression = 0;
 
             char[] symbols = new char[] { '(', '(', ')',')' };
