@@ -9,28 +9,64 @@ namespace NewC_3_9
         {
             char openingBracket = '(';
             char closingBracket = ')';
-            int  depthAttachment = 0;
 
-            char[] symbol = new char[] { '(', '(', ')' };
+            int correctExpression = 0;
 
-            for (int i = 0; i < symbol.Length; i++)
+            char[] symbols = new char[] { '(', '(', ')',')' };
+
+            for (int i = 0; i < symbols.Length; i++)
             {
-                Console.Write($"{symbol[i]}");
+                Console.Write($"{symbols[i]}");
             }
 
-            for (int i = 0; i < symbol.Length; i++)
-            { 
-                if (symbol[0] ==closingBracket)
+            for (int i = 0; i < symbols.Length; i++)
+            {
+                if (symbols[i] == openingBracket)
                 {
-                    Console.WriteLine($"Не является корректным скоточным выражением.");
-                    Console.ReadKey();
-                    break;
+                    correctExpression--;
+                }
+                else if (symbols[i] == closingBracket)
+                {
+                    correctExpression++;
+                    if (correctExpression == 1)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            char currentChar = symbols[0];
+            int currentRepeatCount = 0;
+            int deep = 0;
+
+            if (correctExpression != 0)
+            {
+                Console.WriteLine($"\nСкобочное выражение - некорректное");
+            }
+            else
+            {
+                for (int i = 0; i < symbols.Length; i++)
+                {
+                    if (symbols[i] == currentChar)
+                    {
+                        currentRepeatCount++;
+
+                        if (currentRepeatCount > deep)
+                        {
+                            deep = currentRepeatCount;
+                        }
+                    }
+                    else
+                    {
+                        currentChar = symbols[i];
+                        currentRepeatCount = 1;
+                    }
                 }
 
-
+                Console.WriteLine($"\nСкобочное выражение - корректное, глубина равна {deep}");
             }
 
-
+            Console.ReadKey();
         }
     }
 }
