@@ -35,17 +35,17 @@ namespace NewC_3_9
                 else if (symbols[i] == closingBracket)
                 {
                     correctExpression--;
-                    currentRepeatCountOpeningBracket  --;
+                    currentRepeatCountOpeningBracket--;
 
                     if (correctExpression < 0)
-                        break;                    
+                        break;
                 }
-            }                    
+            }
 
             if (correctExpression != 0)
-                    Console.WriteLine($"\nСкобочное выражение - некорректное");
-                else
-                    Console.WriteLine($"\nСкобочное выражение - корректное, глубина равна {deep}");
+                Console.WriteLine($"\nСкобочное выражение - некорректное");
+            else
+                Console.WriteLine($"\nСкобочное выражение - корректное, глубина равна {deep}");
 
             Console.ReadKey();
         }
