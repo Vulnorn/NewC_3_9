@@ -28,7 +28,6 @@ namespace NewC_3_9
 
                     if (currentRepeatCountOpeningBracket > deep)                   
                         deep = currentRepeatCountOpeningBracket;                  
-
                 }
                 else if (symbols[i] == closingBracket)
                 {
