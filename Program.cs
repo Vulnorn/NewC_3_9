@@ -23,7 +23,7 @@ namespace NewC_3_9
             {
                 if (symbols[i] == openingBracket)
                 {
-                    correctExpression--;
+                    correctExpression++;
                     currentRepeatCountOpeningBracket++;
 
                     if (currentRepeatCountOpeningBracket > deep)
@@ -34,14 +34,11 @@ namespace NewC_3_9
                 }
                 else if (symbols[i] == closingBracket)
                 {
-                    correctExpression++;
+                    correctExpression--;
                     currentRepeatCountOpeningBracket  --;
 
-                    if (correctExpression > 0)
-                    {
-                        Console.WriteLine($"\nСкобочное выражение - некорректное");
-                        break;
-                    }
+                    if (correctExpression < 0)
+                        break;                    
                 }
             }                    
 
