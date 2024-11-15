@@ -10,10 +10,7 @@ namespace NewC_3_9
             char closingBracket = ')';
             int correctExpression = 0;
             int currentRepeatCountOpeningBracket = 0;
-            int currentRepeatCountClosingBracket = 0;
-            int deepOpeningBracket = 0;
-            int deepClosingBracket = 0;
-            int deep=0;
+            int deep = 0;
 
             char[] symbols = new char[] { '(', '(', '(', ')', ')', '(', '(', '(', ')', ')', ')', ')' };
 
@@ -28,24 +25,17 @@ namespace NewC_3_9
                 {
                     correctExpression--;
                     currentRepeatCountOpeningBracket++;
-                    currentRepeatCountClosingBracket = 0;
 
-                    if (currentRepeatCountOpeningBracket > deepOpeningBracket)
+                    if (currentRepeatCountOpeningBracket > deep)
                     {
-                        deepOpeningBracket = currentRepeatCountOpeningBracket;
+                        deep = currentRepeatCountOpeningBracket;
                     }
 
                 }
                 else if (symbols[i] == closingBracket)
                 {
                     correctExpression++;
-                    currentRepeatCountOpeningBracket = 0;
-                    currentRepeatCountClosingBracket++;
-
-                    if (currentRepeatCountClosingBracket > deepClosingBracket)
-                    {
-                        deepClosingBracket = currentRepeatCountClosingBracket;
-                    }
+                    currentRepeatCountOpeningBracket  --;
 
                     if (correctExpression > 0)
                     {
@@ -53,12 +43,7 @@ namespace NewC_3_9
                         break;
                     }
                 }
-            }
-
-            if (deepClosingBracket >= deepOpeningBracket)
-                deep = deepClosingBracket;
-            else if (deepClosingBracket < deepOpeningBracket)
-                deep = deepOpeningBracket;                    
+            }                    
 
             if (correctExpression != 0)
                     Console.WriteLine($"\nСкобочное выражение - некорректное");
