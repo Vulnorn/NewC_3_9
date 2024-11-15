@@ -26,10 +26,8 @@ namespace NewC_3_9
                     correctExpression++;
                     currentRepeatCountOpeningBracket++;
 
-                    if (currentRepeatCountOpeningBracket > deep)
-                    {
-                        deep = currentRepeatCountOpeningBracket;
-                    }
+                    if (currentRepeatCountOpeningBracket > deep)                   
+                        deep = currentRepeatCountOpeningBracket;                  
 
                 }
                 else if (symbols[i] == closingBracket)
