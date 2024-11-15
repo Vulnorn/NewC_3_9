@@ -9,42 +9,43 @@ namespace NewC_3_9
             char openingBracket = '(';
             char closingBracket = ')';
             int correctExpression = 0;
-            int currentRepeatCount = 0;
-            int deep = 0;
+            int currentRepeatCountOpeningBracket = 0;
+            int currentRepeatCountClosingBracket = 0;
+            int deepOpeningBracket = 0;
+            int deepClosingBracket = 0;
+            int deep=0;
 
-            char[] symbols = new char[] { '(', '(', ')', ')' };
+            char[] symbols = new char[] { '(', '(', '(', ')', ')', '(', '(', '(', ')', ')', ')', ')' };
 
             for (int i = 0; i < symbols.Length; i++)
             {
                 Console.Write($"{symbols[i]}");
             }
 
-            char currentChar = symbols[0];
-
             for (int i = 0; i < symbols.Length; i++)
             {
                 if (symbols[i] == openingBracket)
                 {
                     correctExpression--;
+                    currentRepeatCountOpeningBracket++;
+                    currentRepeatCountClosingBracket = 0;
 
-                    if (symbols[i] == currentChar)
+                    if (currentRepeatCountOpeningBracket > deepOpeningBracket)
                     {
-                        currentRepeatCount++;
+                        deepOpeningBracket = currentRepeatCountOpeningBracket;
+                    }
 
-                        if (currentRepeatCount > deep)
-                        {
-                            deep = currentRepeatCount;
-                        }
-                    }
-                    else
-                    {
-                        currentChar = symbols[i];
-                        currentRepeatCount = 1;
-                    }
                 }
                 else if (symbols[i] == closingBracket)
                 {
                     correctExpression++;
+                    currentRepeatCountOpeningBracket = 0;
+                    currentRepeatCountClosingBracket++;
+
+                    if (currentRepeatCountClosingBracket > deepClosingBracket)
+                    {
+                        deepClosingBracket = currentRepeatCountClosingBracket;
+                    }
 
                     if (correctExpression > 0)
                     {
@@ -54,10 +55,15 @@ namespace NewC_3_9
                 }
             }
 
+            if (deepClosingBracket >= deepOpeningBracket)
+                deep = deepClosingBracket;
+            else if (deepClosingBracket < deepOpeningBracket)
+                deep = deepOpeningBracket;                    
+
             if (correctExpression != 0)
-                Console.WriteLine($"\nСкобочное выражение - некорректное");
-            else
-                Console.WriteLine($"\nСкобочное выражение - корректное, глубина равна {deep}");
+                    Console.WriteLine($"\nСкобочное выражение - некорректное");
+                else
+                    Console.WriteLine($"\nСкобочное выражение - корректное, глубина равна {deep}");
 
             Console.ReadKey();
         }
