@@ -6,33 +6,26 @@ namespace NewC_3_9
     {
         static void Main(string[] args)
         {
+            string symbols = "((())((())))";
             char openingBracket = '(';
             char closingBracket = ')';
             int correctExpression = 0;
-            int currentRepeatCountOpeningBracket = 0;
             int deep = 0;
 
-            char[] symbols = new char[] { '(', '(', '(', ')', ')', '(', '(', '(', ')', ')', ')', ')' };
-
-            for (int i = 0; i < symbols.Length; i++)
-            {
-                Console.Write($"{symbols[i]}");
-            }
+            Console.WriteLine($"{symbols}");
 
             for (int i = 0; i < symbols.Length; i++)
             {
                 if (symbols[i] == openingBracket)
                 {
                     correctExpression++;
-                    currentRepeatCountOpeningBracket++;
 
-                    if (currentRepeatCountOpeningBracket > deep)                   
-                        deep = currentRepeatCountOpeningBracket;                  
+                    if (correctExpression > deep)                   
+                        deep = correctExpression;                  
                 }
                 else if (symbols[i] == closingBracket)
                 {
                     correctExpression--;
-                    currentRepeatCountOpeningBracket--;
 
                     if (correctExpression < 0)
                         break;
