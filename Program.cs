@@ -9,8 +9,8 @@ namespace NewC_3_9
             string symbols = "((())((())))";
             char openingBracket = '(';
             char closingBracket = ')';
-            int correctExpression = 0;
             int deep = 0;
+            int maxDeep = 0;
 
             Console.WriteLine($"{symbols}");
 
@@ -18,24 +18,24 @@ namespace NewC_3_9
             {
                 if (symbols[i] == openingBracket)
                 {
-                    correctExpression++;
+                    deep++;
 
-                    if (correctExpression > deep)                   
-                        deep = correctExpression;                  
+                    if (deep > maxDeep)                   
+                        maxDeep = deep;                  
                 }
                 else if (symbols[i] == closingBracket)
                 {
-                    correctExpression--;
+                    deep--;
 
-                    if (correctExpression < 0)
+                    if (deep < 0)
                         break;
                 }
             }
 
-            if (correctExpression != 0)
+            if (deep != 0)
                 Console.WriteLine($"\nСкобочное выражение - некорректное");
             else
-                Console.WriteLine($"\nСкобочное выражение - корректное, глубина равна {deep}");
+                Console.WriteLine($"\nСкобочное выражение - корректное, глубина равна {maxDeep}");
 
             Console.ReadKey();
         }
